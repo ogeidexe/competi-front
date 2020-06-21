@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CadastroServiceService } from './cadastro-service.service';
 import { Empresa } from '../models/empresa';
+import { HomePageService } from '../home-page/home-page.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,11 +16,14 @@ export class CadastroComponent implements OnInit {
   errorText:string;
   empresa:Empresa;
   buttonText:string;
-  constructor(public cadastroServide: CadastroServiceService) { }
+  constructor(
+    public cadastroService: CadastroServiceService,
+    public homePageService: HomePageService
+    ) { }
   cnpjAction(cadastroForm:FormGroup){
     if(cadastroForm.get('cnpj').value.length > 12 ){
       this.spinner = true;
-      this.cadastroServide.validateCnpj(cadastroForm.get('cnpj').value).subscribe( dados => {
+      this.cadastroService.validateCnpj(cadastroForm.get('cnpj').value).subscribe( dados => {
         this.empresa =  dados;
         if(this.empresa.atividade_principal[0].code != undefined){
           this.errorShow = false;
@@ -94,6 +98,10 @@ export class CadastroComponent implements OnInit {
     
   }
   onSubmit(){
+    this.homePageService.criarEmpresa(this.empresa).subscribe(
+      dados => console.log(dados),
+      erro => console.log(erro),
+    );
     console.log("ai")
   }
   

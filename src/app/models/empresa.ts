@@ -9,9 +9,12 @@ export class Empresa {
     bairro: string;
     cep: string;
     municipio: string;
+    cidade:string;
     uf: string;
+    estado: string;
     atividade_principal:[{
         code:string,
         text:string
     }]
+    observacao?:string;
 }
