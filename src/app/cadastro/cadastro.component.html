@@ -23,14 +23,14 @@
     estado
     <input type="text" formControlName="estado">
     <br>
-    <input type="checkbox"  [(checked)]='checked' > Observação 
+    <input type="checkbox" formControlName = "isChecked"> Observação
     <br>
-
-    <textarea *ngIf="checked == true">
+    <textarea *ngIf="cadastroForm.get('isChecked').value == true" formControlName="observacao"> 
     </textarea>
-    <button class="btn btn-primary" type="submit">Cadastro</button>
-    <button class="btn btn btn-danger" type="button" onclick="document.location='/'">Cancela</button>
     <br>
-    {{ cadastroForm.valid }}
+    <button class="btn btn-primary" type="submit" [disabled]='cadastroForm.valid' >Cadastro</button>
+    <button class="btn btn btn-danger" type="button" onclick="document.location='/'">Cancela</button>
+    {{ cadastroForm  }}
+    <br>
 </form>
  
