@@ -1,8 +1,24 @@
 <h1>Formulario de Cadastro</h1>
 
 <form  [formGroup]="cadastroForm"  (ngSubmit)="onSubmit()"  >
-    <h4>CNPJ</h4>
-    <input type="text" formControlName="cnpj">
+    <h4>Dados Iniciais</h4>
+    CNPJ
+    <input type="text" formControlName="cnpj" mask='00.000.000/0000-00' [dropSpecialCharacters]="true" (keydown)='cnpjAction(cadastroForm)'>
+    <div *ngIf="spinner"> Procurando ...</div>
+    <div *ngIf="errorShow">{{ errorText }}</div>
+    <br>
+    Razão Social
+    <input type="text" formControlName="nome">
+    <br>
+    Nome Fantasia
+    <input type="text" formControlName="fantasia">
+    <br>
+    Telefone
+    <input type="text" formControlName="telefone" mask='' [dropSpecialCharacters]="true">
+    <br>
+    CNAE
+    <input type="text" formControlName="cnae" mask='0000-0/00' [dropSpecialCharacters]="true">
+    <br>
     <h3>Endereço</h3>
     <br>
     logradouro
@@ -23,14 +39,12 @@
     estado
     <input type="text" formControlName="estado">
     <br>
-    <input type="checkbox" formControlName = "isChecked"> Observação
+    <input type="checkbox" class="" formControlName = "isChecked"> Observação
     <br>
-    <textarea *ngIf="cadastroForm.get('isChecked').value == true" formControlName="observacao"> 
+    <textarea *ngIf="cadastroForm.get('isChecked').value" formControlName="observacao"> 
     </textarea>
     <br>
-    <button class="btn btn-primary" type="submit" [disabled]='cadastroForm.valid' >Cadastro</button>
-    <button class="btn btn btn-danger" type="button" onclick="document.location='/'">Cancela</button>
-    {{ cadastroForm  }}
+    <button class="btn btn-primary" type="submit" [disabled]='!cadastroForm.valid' >{{buttonText}}</button>
+    <button class="btn btn btn-danger" type="button" onclick="document.location='/'">Cancelar</button>
     <br>
 </form>
- 

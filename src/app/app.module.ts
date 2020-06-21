@@ -7,6 +7,11 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -17,7 +22,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
+    HttpClientModule,
+    HttpClientJsonpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
