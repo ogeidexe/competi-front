@@ -21,13 +21,15 @@ export class HomePageService {
     return this.http.get<Empresa>(`${this.baseURL}/empresa/${id}`)
   }
 
-  removerEmpresa(id):Observable<Empresa>{
-    return this.http.delete<Empresa>(`${this.baseURL}/empresa/${id}`)
+  removerEmpresa(id):Observable<any>{
+    return this.http.delete<any>(`${this.baseURL}/empresa/${id}`)
   }
   
   criarEmpresa(empresa:Empresa):Observable<Empresa>{
-    empresa.cidade =  empresa.municipio;
-    empresa.estado =  empresa.uf;
+    /// empresa.cidade =  empresa.municipio;
+    // empresa.estado =  empresa.uf;
+    // empresa.cnae = empresa.atividade_principal[0].code;
+    console.log(empresa)
     return this.http.post<Empresa>(`${this.baseURL}/empresa`, empresa)
   }
   

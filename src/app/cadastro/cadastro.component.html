@@ -1,12 +1,13 @@
 <h1>Formulario de Cadastro</h1>
 
-<form  [formGroup]="cadastroForm"  (ngSubmit)="onSubmit()"  >
+<form  [formGroup]="cadastroForm"  (ngSubmit)="onSubmit(cadastroForm.value)"  >
     <h4>Dados Iniciais</h4>
     CNPJ
     <input type="text" formControlName="cnpj" mask='00.000.000/0000-00' [dropSpecialCharacters]="true" (keydown)='cnpjAction(cadastroForm)'>
     <div *ngIf="spinner"> Procurando ...</div>
     <div *ngIf="errorShow">{{ errorText }}</div>
     <br>
+    <input type="hidden" formControlName="id">
     Razão Social
     <input type="text" formControlName="nome">
     <br>

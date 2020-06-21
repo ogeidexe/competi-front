@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomePageService } from './home-page.service';
 import { Empresa } from '../models/empresa';
+import { EmptyError } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -24,8 +25,17 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  removeEmpresa(){
-
+  removeEmpresa(empresa:Empresa){
+    this.homePageService.removerEmpresa(empresa.id).subscribe( body => {
+     console.log(body.message);
+     this.listaEmpresas();
+    }, 
+     error =>{
+      console.log(error)
+      this.listaEmpresas();
+    } 
+       
+    )
   }
 
   atualizaEmpresa(){

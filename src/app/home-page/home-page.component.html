@@ -28,8 +28,12 @@
                         {{ empresa.telefone }}
                     </td>
                     <td>
-                        <button class="btn btn-primary" type="button" style="margin-right: 10px;" >Editar</button>
-                        <button class="btn btn-danger" type="button">Excluir</button>
+                        <a class="btn btn-primary" style="margin-right: 10px;" href="/cadastro?id={{empresa.id}}">
+                            Editar
+                        </a>
+                        <a class="btn btn-danger" (click) = removeEmpresa(empresa) >
+                            Excluir
+                        </a>
                     </td>
                 </tr>
             </tbody>
