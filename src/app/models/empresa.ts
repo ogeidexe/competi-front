@@ -1,4 +1,5 @@
 export class Empresa {
+    id?:number;
     cnpj:string;
     nome:string;
     fantasia:string;

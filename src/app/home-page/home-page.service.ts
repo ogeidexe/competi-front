@@ -14,7 +14,7 @@ export class HomePageService {
   constructor(private http: HttpClient) { }
   
   obterEmpresas():Observable<Empresa[]>{
-    return this.http.jsonp<Empresa[]>(`${this.baseURL}/empresas`,"callback") 
+    return this.http.get<Empresa[]>(`${this.baseURL}/empresas`) 
   }
   
   obterEmpresa(id):Observable<Empresa>{
